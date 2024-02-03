@@ -4,12 +4,25 @@ const message = require("./lang/en/en.js")
 const url = require('url');
 
 
-http.createServer(function (req, res) {
+// http.createServer(function (req, res) {
+//   res.writeHead(200, { 'Content-Type': 'text/html' });
+//   let name = req.url.split("=")[1];
+//   res.write(`<p style="color: blue;">${message.greeting.replace("%1",name)} ${date.getDate().toString()}</p>`);
+//   res.end();
+// }).listen(8081);
+
+const PORT = process.env.PORT || 8081;
+
+const server = http.createServer(function (req, res) {
   res.writeHead(200, { 'Content-Type': 'text/html' });
   let name = req.url.split("=")[1];
-  res.write(`<p style="color: blue;">${message.greeting.replace("%1",name)} ${date.getDate().toString()}</p>`);
+ res.write(`<p style="color: blue;">${message.greeting.replace("%1",name)} ${date.getDate().toString()}</p>`);
   res.end();
-}).listen(8081);
+});
+
+server.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
 
 
 
